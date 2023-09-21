@@ -1,0 +1,607 @@
+[
+    {
+        "id": "348ff662b4f1ac9a",
+        "type": "tab",
+        "label": "LKSN CC 2023",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "17aa96ce88e433c4",
+        "type": "mqtt in",
+        "z": "348ff662b4f1ac9a",
+        "name": "DHT22",
+        "topic": "/sensor/dht22",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "01ddc4ae32d07dc9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 260,
+        "wires": [
+            [
+                "1fce36ca684c484b",
+                "ba843e8eb98eed88"
+            ]
+        ]
+    },
+    {
+        "id": "796c5aa50e99f2a1",
+        "type": "mqtt in",
+        "z": "348ff662b4f1ac9a",
+        "name": "Gyro",
+        "topic": "/sensor/mpu6050/gyro",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "01ddc4ae32d07dc9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 380,
+        "wires": [
+            [
+                "1ea12d43694adddd",
+                "229ed50268c19c4c",
+                "498206354867418c"
+            ]
+        ]
+    },
+    {
+        "id": "96e55d505f81a65b",
+        "type": "mqtt in",
+        "z": "348ff662b4f1ac9a",
+        "name": "Accel",
+        "topic": "/sensor/mpu6050/accel",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "01ddc4ae32d07dc9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 520,
+        "wires": [
+            [
+                "987ce9f24e27549b",
+                "483d69cf95bd3f2c",
+                "d1a041ae32f913c2"
+            ]
+        ]
+    },
+    {
+        "id": "c398fda3145d400a",
+        "type": "ui_gauge",
+        "z": "348ff662b4f1ac9a",
+        "name": "",
+        "group": "dd5e65b274b0f28a",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "*c",
+        "format": "{{payload}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 590,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "1c84f154f3d454bc",
+        "type": "ui_gauge",
+        "z": "348ff662b4f1ac9a",
+        "name": "",
+        "group": "dd5e65b274b0f28a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 590,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "fe18d4e2f6a50bba",
+        "type": "ui_gauge",
+        "z": "348ff662b4f1ac9a",
+        "name": "",
+        "group": "c0f14c1578d30ba6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "X",
+        "label": "",
+        "format": "{{payload}}",
+        "min": "-10",
+        "max": "10",
+        "colors": [
+            "#ff0000",
+            "#37ff00",
+            "#ff0000"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 590,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "b43c0bd6280669fd",
+        "type": "debug",
+        "z": "348ff662b4f1ac9a",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "1fce36ca684c484b",
+        "type": "change",
+        "z": "348ff662b4f1ac9a",
+        "name": "Temp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 240,
+        "wires": [
+            [
+                "c398fda3145d400a"
+            ]
+        ]
+    },
+    {
+        "id": "ba843e8eb98eed88",
+        "type": "change",
+        "z": "348ff662b4f1ac9a",
+        "name": "Humi",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 280,
+        "wires": [
+            [
+                "1c84f154f3d454bc"
+            ]
+        ]
+    },
+    {
+        "id": "1ea12d43694adddd",
+        "type": "change",
+        "z": "348ff662b4f1ac9a",
+        "name": "X",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.gyroX",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "fe18d4e2f6a50bba"
+            ]
+        ]
+    },
+    {
+        "id": "229ed50268c19c4c",
+        "type": "change",
+        "z": "348ff662b4f1ac9a",
+        "name": "Y",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.gyroY",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 380,
+        "wires": [
+            [
+                "cdc2c1154eea6ba0"
+            ]
+        ]
+    },
+    {
+        "id": "498206354867418c",
+        "type": "change",
+        "z": "348ff662b4f1ac9a",
+        "name": "Z",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.gyroZ",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 420,
+        "wires": [
+            [
+                "36ef5e6142c9f4cd"
+            ]
+        ]
+    },
+    {
+        "id": "987ce9f24e27549b",
+        "type": "change",
+        "z": "348ff662b4f1ac9a",
+        "name": "X",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.accelX",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 480,
+        "wires": [
+            [
+                "a506c399fbd8f7a9"
+            ]
+        ]
+    },
+    {
+        "id": "483d69cf95bd3f2c",
+        "type": "change",
+        "z": "348ff662b4f1ac9a",
+        "name": "Y",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.accelY",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 520,
+        "wires": [
+            [
+                "d72e9e4c2b3139ef"
+            ]
+        ]
+    },
+    {
+        "id": "d1a041ae32f913c2",
+        "type": "change",
+        "z": "348ff662b4f1ac9a",
+        "name": "Z",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.accelZ",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 560,
+        "wires": [
+            [
+                "8aefc71539b6ace7"
+            ]
+        ]
+    },
+    {
+        "id": "8aefc71539b6ace7",
+        "type": "ui_gauge",
+        "z": "348ff662b4f1ac9a",
+        "name": "",
+        "group": "3318461d892c84ff",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Z",
+        "label": "",
+        "format": "{{payload}}",
+        "min": "-100",
+        "max": "100",
+        "colors": [
+            "#000000",
+            "#3de600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 590,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "d72e9e4c2b3139ef",
+        "type": "ui_gauge",
+        "z": "348ff662b4f1ac9a",
+        "name": "",
+        "group": "3318461d892c84ff",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Y",
+        "label": "",
+        "format": "{{payload}}",
+        "min": "-100",
+        "max": "100",
+        "colors": [
+            "#000000",
+            "#3de600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 590,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a506c399fbd8f7a9",
+        "type": "ui_gauge",
+        "z": "348ff662b4f1ac9a",
+        "name": "",
+        "group": "3318461d892c84ff",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "X",
+        "label": "",
+        "format": "{{payload}}",
+        "min": "-100",
+        "max": "100",
+        "colors": [
+            "#000000",
+            "#3de600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 590,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "cdc2c1154eea6ba0",
+        "type": "ui_gauge",
+        "z": "348ff662b4f1ac9a",
+        "name": "",
+        "group": "c0f14c1578d30ba6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Y",
+        "label": "",
+        "format": "{{payload}}",
+        "min": "-10",
+        "max": "10",
+        "colors": [
+            "#ff0000",
+            "#37ff00",
+            "#ff0000"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 590,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "36ef5e6142c9f4cd",
+        "type": "ui_gauge",
+        "z": "348ff662b4f1ac9a",
+        "name": "",
+        "group": "c0f14c1578d30ba6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Z",
+        "label": "",
+        "format": "{{payload}}",
+        "min": "-10",
+        "max": "10",
+        "colors": [
+            "#ff0000",
+            "#37ff00",
+            "#ff0000"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 590,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "01ddc4ae32d07dc9",
+        "type": "mqtt-broker",
+        "name": "emqx-local",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "/notif/status",
+        "birthQos": "1",
+        "birthRetain": "false",
+        "birthPayload": "connected",
+        "birthMsg": {},
+        "closeTopic": "/notif/status",
+        "closeQos": "1",
+        "closeRetain": "false",
+        "closePayload": "disconnecting",
+        "closeMsg": {},
+        "willTopic": "/notif/status",
+        "willQos": "1",
+        "willRetain": "false",
+        "willPayload": "unexpected disconnected",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dd5e65b274b0f28a",
+        "type": "ui_group",
+        "name": "DHT",
+        "tab": "11906199f8a4af20",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c0f14c1578d30ba6",
+        "type": "ui_group",
+        "name": "Gyro",
+        "tab": "11906199f8a4af20",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3318461d892c84ff",
+        "type": "ui_group",
+        "name": "Accel",
+        "tab": "11906199f8a4af20",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "11906199f8a4af20",
+        "type": "ui_tab",
+        "name": "LKSN CC",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
